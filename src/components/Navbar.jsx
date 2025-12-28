@@ -1,19 +1,26 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const links = [
-  { label: 'Features', href: '#features' },
-  { label: 'Security', href: '#security' },
-  { label: 'Pricing', href: '#pricing' },
-  { label: 'FAQ', href: '#faq' },
+  { label: 'Возможности', href: '/#features' },
+  { label: 'Безопасность', href: '/#security' },
+  { label: 'Цены', href: '/#pricing' },
+  { label: 'FAQ', href: '/#faq' },
+  { label: 'Документация', to: '/docs' },
 ]
 
-function NavLink({ label, href, onClick }) {
+function NavLink({ label, href, to, onClick }) {
+  const baseClass =
+    'text-sm text-muted transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white'
+  if (to) {
+    return (
+      <Link to={to} onClick={onClick} className={baseClass}>
+        {label}
+      </Link>
+    )
+  }
   return (
-    <a
-      href={href}
-      onClick={onClick}
-      className="text-sm text-muted transition hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-    >
+    <a href={href} onClick={onClick} className={baseClass}>
       {label}
     </a>
   )
@@ -23,33 +30,33 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="sticky top-0 z-30 border-b border-border/80 bg-base/85 backdrop-blur">
-      <div className="flex items-center justify-between py-4 md:py-5">
-        <a
-          href="#top"
+    <header className="sticky top-0 z-30 w-full border-b border-border/80 bg-base/85 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-8 md:py-5">
+        <Link
+          to="/"
           className="text-xs font-semibold tracking-[0.3em] text-white transition hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
-          SELF-HOSTED MVP VPN
-        </a>
+          MVP VPN PRIVATE
+        </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
-            <NavLink key={link.href} {...link} />
+            <NavLink key={link.label} {...link} />
           ))}
           <a
-            href="#cta"
+            href="/#cta"
             className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black transition duration-150 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(0,0,0,0.25)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-0"
           >
-            Deploy Now
+            Развернуть
           </a>
         </nav>
 
         <div className="flex items-center gap-3 md:hidden">
           <a
-            href="#cta"
+            href="/#cta"
             className="rounded-full bg-white px-3 py-2 text-xs font-semibold uppercase tracking-wide text-black transition duration-150 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            Deploy
+            Старт
           </a>
           <button
             type="button"
@@ -80,19 +87,19 @@ export default function Navbar() {
 
       {open ? (
         <div className="md:hidden">
-          <div className="space-y-3 border-t border-border/80 py-4">
+          <div className="space-y-3 border-t border-border/80 px-6 py-4">
             {links.map((link) => (
-              <div key={link.href} className="flex justify-between">
+              <div key={link.label} className="flex justify-between">
                 <NavLink {...link} onClick={() => setOpen(false)} />
                 <span aria-hidden className="h-px flex-1 translate-y-3 border-b border-dashed border-border/60" />
               </div>
             ))}
             <a
-              href="#cta"
+              href="/#cta"
               onClick={() => setOpen(false)}
               className="block w-full rounded-full border border-white px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              Deploy Now
+              Развернуть
             </a>
           </div>
         </div>

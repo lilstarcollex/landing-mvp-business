@@ -12,7 +12,7 @@ export default {
         border: '#1E293B',
       },
       fontFamily: {
-        sans: ['"Space Grotesk"', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Manrope"', 'Inter', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
         subtle: '0 20px 80px rgba(0,0,0,0.35)',

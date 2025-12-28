@@ -2,10 +2,10 @@ export default function FeatureGrid({ features }) {
   return (
     <section id="features" className="space-y-8">
       <div className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">Features</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted">Возможности</p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Built for control and clarity</h2>
-          <span className="text-sm text-muted">Everything is single-tenant, logged, and configurable.</span>
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Создан для контроля и ясности</h2>
+          <span className="text-sm text-muted">Каждый контур изолирован, зафиксирован в логах и управляется через код.</span>
         </div>
       </div>
 

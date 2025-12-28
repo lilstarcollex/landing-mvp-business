@@ -29,7 +29,7 @@ function FAQItem({ faq, isOpen, onToggle }) {
         </button>
       </h3>
       {isOpen ? (
-        <div className="border-t border-border px-4 py-3 text-sm leading-relaxed text-muted">{faq.answer}</div>
+        <div className="border-t border-border px-4 py-3 text-sm leading-relaxed text-white/80">{faq.answer}</div>
       ) : null}
     </div>
   )
@@ -42,8 +42,8 @@ export default function FAQAccordion({ faqs }) {
     <section id="faq" className="space-y-6">
       <div className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted">FAQ</p>
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Answers for operators and security teams</h2>
-        <p className="text-sm text-muted">Clear expectations for deployment, compliance, and support.</p>
+        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Ответы для операторов и служб безопасности</h2>
+        <p className="text-sm text-muted">Что нужно знать о развёртывании, требованиях и поддержке.</p>
       </div>
       <div className="space-y-3">
         {faqs.map((faq, index) => (

@@ -6,24 +6,24 @@ export default function CTA() {
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(255,255,255,0.08),transparent_35%),radial-gradient(circle_at_80%_20%,rgba(255,255,255,0.05),transparent_35%)] opacity-60" />
       <div className="relative space-y-4">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">Ready to deploy</p>
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Own your VPN without renting trust.</h2>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted">Готовы к запуску</p>
+        <h2 className="text-2xl font-semibold text-white sm:text-3xl">Владеете VPN, не арендуете доверие.</h2>
         <p className="max-w-2xl text-sm text-muted">
-          Ship a self-hosted control plane, wire it into your identity provider, and keep every key within your
-          boundary. No per-GB surprises; predictable operations.
+          Разворачивайте самостоятельную плоскость управления, подключайте свой IdP и храните ключи в своих границах.
+          Никаких сюрпризов за гигабайты — только предсказуемые операции.
         </p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
           <a
-            href="#top"
+            href="/#top"
             className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-black transition duration-150 hover:-translate-y-0.5 hover:shadow-[0_15px_40px_rgba(0,0,0,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            Deploy Now
+            Развернуть
           </a>
           <a
-            href="#pricing"
+            href="/#pricing"
             className="inline-flex items-center justify-center rounded-full border border-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-white transition hover:bg-white hover:text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
-            View pricing
+            Смотреть тарифы
           </a>
         </div>
       </div>

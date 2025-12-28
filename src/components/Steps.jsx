@@ -2,9 +2,9 @@ export default function Steps({ steps }) {
   return (
     <section id="steps" className="space-y-8">
       <div className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">How it works</p>
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">From zero to connected</h2>
-        <p className="text-sm text-muted">Three clear phases to get live without surprises.</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted">Как это работает</p>
+        <h2 className="text-2xl font-semibold text-white sm:text-3xl">От подготовки до подключения</h2>
+        <p className="text-sm text-muted">Три понятных шага, чтобы запуститься без сюрпризов.</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">

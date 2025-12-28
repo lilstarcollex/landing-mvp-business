@@ -7,7 +7,7 @@ function Tier({ tier }) {
     >
       {tier.highlighted && (
         <span className="absolute right-6 top-6 rounded-full border border-white/30 px-3 py-1 text-xs text-white">
-          Recommended
+          Рекомендуем
         </span>
       )}
       <div className="space-y-2">
@@ -58,9 +58,9 @@ export default function Pricing({ tiers, note }) {
   return (
     <section id="pricing" className="space-y-8">
       <div className="space-y-2">
-        <p className="text-xs uppercase tracking-[0.25em] text-muted">Pricing</p>
+        <p className="text-xs uppercase tracking-[0.25em] text-muted">Тарифы</p>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Straightforward, self-hosted tiers</h2>
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Простые, саморазвёртываемые тарифы</h2>
           <p className="text-sm text-muted">{note}</p>
         </div>
       </div>
