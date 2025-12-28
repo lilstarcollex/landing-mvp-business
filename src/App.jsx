@@ -1,266 +1,140 @@
-import { useState } from 'react'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import FeatureGrid from './components/FeatureGrid'
+import SecuritySection from './components/SecuritySection'
+import Steps from './components/Steps'
+import Pricing from './components/Pricing'
+import FAQAccordion from './components/FAQAccordion'
+import CTA from './components/CTA'
+import Footer from './components/Footer'
 
-const highlights = [
+const features = [
   {
-    title: 'Чистый выделенный IP',
+    title: 'Single-tenant by design',
     description:
-      'Никаких соседей и шумного трафика. Ваш адрес не попадает в блок-листы общих VPN.',
+      'Dedicated control plane per customer. No noisy neighbors, no shared state.',
   },
   {
-    title: 'Контроль и прозрачность',
-    description:
-      'Доступы и ключи только у вас. Настройки, шифрование и пользователи под вашим управлением.',
+    title: 'Zero-trust ready',
+    description: 'Built for short-lived certs, device posture, and identity-aware access.',
   },
   {
-    title: 'Скорость без ограничений',
-    description:
-      'Подбираем конфигурацию под ваши сценарии: стриминг, работа, гейминг или удалённый доступ.',
+    title: 'IaC-friendly',
+    description: 'Version every policy and tunnel. GitOps ready with declarative configs.',
   },
   {
-    title: 'Стабильность и поддержка',
-    description:
-      'Файрвол, мониторинг на запуске, резервные профили и помощь в течение первого месяца.',
+    title: 'Audit logs',
+    description: 'Immutable, exportable audit trails with retention controls.',
   },
+  {
+    title: 'Role-based access',
+    description: 'Granular RBAC for admins, operators, and auditors with scoped privileges.',
+  },
+  {
+    title: 'Predictable costs',
+    description: 'Self-hosted footprint with no egress or per-GB surprises.',
+  },
+]
+
+const securityChecklist = [
+  'Rotatable keys and certs',
+  'Least-privilege roles',
+  'Tamper-evident logs',
+  'Hardware-backed keys optional',
+  'IP allow/deny controls',
+  'Isolated admin plane',
 ]
 
 const steps = [
   {
-    title: 'Готовим сервер',
-    points: ['Подберём VPS под бюджет', 'Привяжем домен при необходимости', 'Проверим локацию и пинги'],
+    title: 'Provision',
+    description: 'Deploy the control plane to your cloud or on-prem footprint in minutes.',
   },
   {
-    title: 'Ставим защиту',
-    points: ['Настройка VPN и firewall', 'Установка 3x-ui и бота', 'Создание пользователей и ключей'],
+    title: 'Configure',
+    description: 'Push policies, roles, and routing through code. CI-friendly, drift-safe.',
   },
   {
-    title: 'Передаём доступ',
-    points: ['Готовые конфиги для устройств', 'Инструкция и видео', 'Тест вместе по шагам'],
+    title: 'Connect',
+    description: 'Enroll devices and services with signed profiles; monitor posture live.',
   },
 ]
 
-const comparisons = [
+const pricing = [
   {
-    parameter: 'IP-адрес',
-    subscription: 'Общий, часто в бан-листах',
-    personal: 'Выделенный, чистый, только ваш',
+    name: 'Team',
+    price: 'From GBP X/mo',
+    description: 'For teams that need secure, auditable VPN access with predictable ops.',
+    features: ['Up to 50 seats', 'SSO & SCIM ready', 'Automated backups', 'Email support'],
+    cta: 'Deploy Team',
   },
   {
-    parameter: 'Приватность',
-    subscription: 'Логи на стороне сервиса',
-    personal: 'Логи отключены, ключи у вас',
-  },
-  {
-    parameter: 'Скорость',
-    subscription: 'Делится между пользователями',
-    personal: 'Стабильная, без соседей',
-  },
-  {
-    parameter: 'Гибкость',
-    subscription: 'Ограниченные настройки',
-    personal: 'Полный контроль протоколов и правил',
-  },
-  {
-    parameter: 'Стоимость',
-    subscription: 'Подписка каждый месяц',
-    personal: 'Единоразовая настройка + VPS от 370 ₽/мес',
+    name: 'Enterprise',
+    price: 'From GBP X/mo',
+    description: 'For regulated environments needing deeper controls and white-glove rollout.',
+    features: [
+      'Unlimited seats',
+      'Private networking patterns',
+      'Dedicated support line',
+      'Onboarding + hardening workshop',
+    ],
+    cta: 'Talk to us',
+    highlighted: true,
   },
 ]
 
-const priceIncludes = [
-  'Подбор VPS под ваши задачи',
-  'Установка и настройка VPN + firewall',
-  'Панель 3x-ui и управление через бота',
-  'Готовые профили и инструкция для устройств',
-  'Виде созвон для финальной проверки',
-  'Поддержка 30 дней после запуска',
+const faqs = [
+  {
+    question: 'How do I deploy it?',
+    answer: 'Use the Helm chart or Terraform module to install into your preferred Kubernetes cluster or VM fleet.',
+  },
+  {
+    question: 'What are the infra requirements?',
+    answer: 'A small control plane footprint (2-3 nodes), outbound internet for updates, and access to your identity provider.',
+  },
+  {
+    question: 'Is it compliant-ready?',
+    answer: 'Audit trails, RBAC, and config immutability support SOC2 and ISO-aligned processes out of the box.',
+  },
+  {
+    question: 'How are upgrades handled?',
+    answer: 'Versioned, reversible upgrades with preflight checks. Roll forward or back without downtime.',
+  },
+  {
+    question: 'What support is included?',
+    answer: 'Team includes business-hours support; Enterprise adds 24/7 SLA and a named success engineer.',
+  },
+  {
+    question: 'Can we migrate from our current VPN?',
+    answer: 'Yes. Import existing routes and users, stage new tunnels in parallel, and cut over with phased policies.',
+  },
 ]
 
-export default function App() {
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setSubmitted(true)
-  }
-
+function App() {
   return (
-    <div className="page container mx-auto px-5 sm:px-6 lg:px-8 xl:px-12">
-      <header className="hero">
-        <div className="badge">Без подписок и сюрпризов</div>
-        <h1>Персональный VPN на вашем сервере</h1>
-        <p className="lead">
-          Чистый выделенный IP, скорость без соседей, прозрачные настройки. Делегируйте установку и
-          получите защищённый доступ для всех ваших устройств.
-        </p>
-        <div className="hero-actions">
-          <a className="btn primary" href="#cta">
-            Получить настройку
-          </a>
-          <a className="btn ghost" href="#comparison">
-            Сравнить варианты
-          </a>
+    <div className="min-h-screen bg-base text-text">
+      <div className="relative isolate overflow-hidden">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(248,250,252,0.05),transparent_32%),radial-gradient(circle_at_80%_0%,rgba(248,250,252,0.05),transparent_28%),radial-gradient(circle_at_40%_70%,rgba(248,250,252,0.04),transparent_25%)] opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] via-transparent to-transparent" />
         </div>
 
-        <div className="hero-stats">
-          <div>
-            <span className="stat-value">1 день</span>
-            <span className="stat-label">до готового VPN</span>
-          </div>
-          <div>
-            <span className="stat-value">30 дней</span>
-            <span className="stat-label">сопровождение после запуска</span>
-          </div>
-          <div>
-            <span className="stat-value">0 логов</span>
-            <span className="stat-label">ключи и доступы только у вас</span>
-          </div>
+        <div className="relative mx-auto max-w-6xl px-6 pb-16 md:px-8">
+          <Navbar />
+          <main className="space-y-24 pb-12 pt-12 md:space-y-28 md:pt-16">
+            <Hero trustLine="Designed for teams that run production infrastructure." />
+            <FeatureGrid features={features} />
+            <SecuritySection checklist={securityChecklist} />
+            <Steps steps={steps} />
+            <Pricing tiers={pricing} note="Self-hosted. No per-GB surprises." />
+            <FAQAccordion faqs={faqs} />
+            <CTA />
+          </main>
+          <Footer />
         </div>
-      </header>
-
-      <section className="panel" id="why">
-        <div className="section-head">
-          <p className="eyebrow">Почему свой VPN</p>
-          <h2>Приватность и скорость, которые нельзя купить подпиской</h2>
-          <p className="muted">
-            Общие VPN-сервисы делят ресурсы между тысячами пользователей. Персональный сервер —
-            только для вас и ваших устройств.
-          </p>
-        </div>
-        <div className="card-grid">
-          {highlights.map((item) => (
-            <article className="card" key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="panel service">
-        <div className="section-head">
-          <p className="eyebrow">Что входит</p>
-          <h2>Делаем под ключ и остаёмся рядом на запуске</h2>
-          <p className="muted">
-            Поможем выбрать VPS, настроим защиту, подготовим доступы и проверим всё вместе по шагам.
-          </p>
-        </div>
-
-        <div className="service-grid">
-          {steps.map((step) => (
-            <div className="card step" key={step.title}>
-              <div className="step-title">{step.title}</div>
-              <ul>
-                {step.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="panel comparison" id="comparison">
-        <div className="section-head">
-          <p className="eyebrow">Сравнение</p>
-          <h2>Персональный VPN против подписки</h2>
-          <p className="muted">Понимайте, за что платите, и что получаете на своём сервере.</p>
-        </div>
-
-        <div className="comparison-table-wrap">
-          <table className="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Параметр</th>
-                <th scope="col">Подписка/аренда</th>
-                <th scope="col">Личный сервер</th>
-              </tr>
-            </thead>
-            <tbody>
-              {comparisons.map((row) => (
-                <tr key={row.parameter}>
-                  <th scope="row">{row.parameter}</th>
-                  <td>{row.subscription}</td>
-                  <td className="positive">{row.personal}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="panel price" id="price">
-        <div className="price-card">
-          <div className="price-meta">
-            <span className="eyebrow">Стоимость</span>
-            <div className="price-value">4 500 ₽</div>
-            <p className="muted">Единоразовая настройка под ключ</p>
-          </div>
-
-          <div className="price-includes">
-            <h3>Включено</h3>
-            <ul>
-              {priceIncludes.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="note">VPS оплачивается отдельно: от 370 ₽/мес в зависимости от локации.</div>
-        </div>
-      </section>
-
-      <section className="panel cta" id="cta">
-        <div className="cta-inner">
-          <div className="cta-copy">
-            <p className="eyebrow">Начнём сегодня</p>
-            <h2>Оставьте контакт, обсудим детали за 10 минут</h2>
-            <p className="muted">
-              Расскажите, для чего нужен VPN: работа, доступ к сервисам, стриминг или что-то ещё. Мы
-              подберём конфигурацию и предложим сервер.
-            </p>
-            <div className="cta-actions">
-              <a className="btn primary" href="mailto:?subject=Персональный%20VPN&body=Хочу%20настройку%20VPN">
-                Написать на email
-              </a>
-              <a className="btn ghost" href="#price">
-                Посмотреть условия
-              </a>
-            </div>
-          </div>
-
-          <form className="cta-form" onSubmit={handleSubmit}>
-            <label>
-              Имя или ник
-              <input name="name" required placeholder="Например, Анна или @nickname" />
-            </label>
-            <label>
-              Контакт (Telegram или email)
-              <input name="contact" required placeholder="@nickname или mail@example.com" />
-            </label>
-            <label>
-              Что важно
-              <textarea name="context" rows="3" placeholder="Где нужен VPN, сколько устройств, какие сервисы" />
-            </label>
-            {submitted ? (
-              <div className="success">Готово! Мы свяжемся с вами и уточним детали.</div>
-            ) : (
-              <button type="submit" className="btn primary full">
-                Оставить заявку
-              </button>
-            )}
-            <p className="microcopy">Без спама. Контакты нужны только для связи по настройке.</p>
-          </form>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <div>Персональный VPN · контроль и скорость на вашем сервере</div>
-        <div className="footer-actions">
-          <a href="#why">Аргументы</a>
-          <a href="#comparison">Сравнение</a>
-          <a href="#cta">Оставить заявку</a>
-        </div>
-      </footer>
+      </div>
     </div>
   )
 }
+
+export default App
