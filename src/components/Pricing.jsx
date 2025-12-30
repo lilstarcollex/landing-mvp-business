@@ -16,7 +16,7 @@ function Tier({ tier }) {
       </div>
       <div className="mt-6 flex items-baseline gap-2">
         <span className="text-3xl font-semibold text-white">{tier.price}</span>
-        <span className="text-sm text-muted">self-hosted</span>
+        <span className="text-sm text-muted">PRIVATE VPN</span>
       </div>
       <ul className="mt-6 space-y-3 text-sm text-muted">
         {tier.features.map((feature) => (
@@ -60,7 +60,7 @@ export default function Pricing({ tiers, note }) {
       <div className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted">Тарифы</p>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Простые, саморазвёртываемые тарифы</h2>
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Несколько решений для вас</h2>
           <p className="text-sm text-muted">{note}</p>
         </div>
       </div>

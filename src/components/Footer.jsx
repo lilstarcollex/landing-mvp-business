@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="space-y-2">
           <p className="text-xs font-semibold tracking-[0.3em] text-white">MVP VPN PRIVATE</p>
-          <p className="text-sm text-muted">Плоскость управления, которой вы владеете. Поза безопасности, которой вы доверяете.</p>
+          <p className="text-sm text-muted">Никакой интернет цензуры. Никаких сливов данных. Всё в ваших руках.</p>
           <p className="text-xs text-muted">Copyright {new Date().getFullYear()} MVP VPN PRIVATE. Все права защищены.</p>
         </div>
         <nav className="flex flex-wrap gap-4 text-sm text-muted">

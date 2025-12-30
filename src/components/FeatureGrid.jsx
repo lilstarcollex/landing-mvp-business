@@ -4,8 +4,8 @@ export default function FeatureGrid({ features }) {
       <div className="space-y-2">
         <p className="text-xs uppercase tracking-[0.25em] text-muted">Возможности</p>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Создан для контроля и ясности</h2>
-          <span className="text-sm text-muted">Каждый контур изолирован, зафиксирован в логах и управляется через код.</span>
+          <h2 className="text-2xl font-semibold text-white sm:text-3xl">Создан для максимальной приватности</h2>
+          <span className="text-sm text-muted">Абсолютно все данные остаются под вашим контролем</span>
         </div>
       </div>
 

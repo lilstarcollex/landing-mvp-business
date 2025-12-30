@@ -13,14 +13,14 @@ export default function Hero({ trustLine }) {
       <div className="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-center">
         <div className="space-y-8">
           <div className="inline-flex items-center gap-3 rounded-full border border-border bg-surface/70 px-4 py-2 text-xs uppercase tracking-[0.25em] text-muted">
-            Самостоятельный деплой | Готов к бизнесу | Аудит
+            Минимум действий — максимум контроля
           </div>
           <div className="space-y-5">
             <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl">
-              Контролируйте VPN. Владейте инфраструктурой.
+              Ваш личный VPN. Только ваш!
             </h1>
             <p className="max-w-2xl text-base text-muted sm:text-lg">
-              Запускайте VPN промышленного уровня, не арендуя чужую плоскость управления. Разворачивайте в своём облаке, храните ключи в своём хранилище и работайте предсказуемо и прозрачно.
+              Ваш личный VPN. Все данные остаются под вашим контролем. Никакой интернет цензуры. Никаких сливов данных. Только вы решаете, кто и как получает доступ к вашему интернет-трафику.
             </p>
           </div>
 
@@ -29,7 +29,7 @@ export default function Hero({ trustLine }) {
               href="/#cta"
               className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-wide text-black transition duration-150 hover:-translate-y-0.5 hover:shadow-[0_15px_40px_rgba(0,0,0,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white active:translate-y-0"
             >
-              Развернуть сейчас
+              Оставить заявку
             </a>
             <a
               href="/#faq"
@@ -52,10 +52,10 @@ export default function Hero({ trustLine }) {
               <span className="rounded-full border border-border px-3 py-1 text-xs text-muted">Готово</span>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <HeroStat label="Контур управления" value="Изолированное пространство" />
-              <HeroStat label="Аудит" value="Неизменяемо / экспортируемо" />
-              <HeroStat label="Предсказуемость" value="Без тарификации за трафик" />
-              <HeroStat label="Доступ" value="RBAC + SSO" />
+              <HeroStat label="Как управлять?" value="Панель управления и бот" />
+              <HeroStat label="Предсказуемость" value="Пока работает сервер" />
+              <HeroStat label="Доступ" value="Только в ваших руках" />
+              <HeroStat label="Протоколы" value="Классика и современные" />
             </div>
           </div>
         </div>
